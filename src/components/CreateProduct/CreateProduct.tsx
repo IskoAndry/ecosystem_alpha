@@ -38,7 +38,7 @@ const CreateProduct: React.FC = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ handleChange }) => (
+      {({ }) => (
         <Form>
           <Field
             name="title"

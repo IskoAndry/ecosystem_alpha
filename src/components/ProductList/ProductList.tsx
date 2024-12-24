@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+
 import ProductCard from '../ProductCard/ProductCard';
 
 interface ProductListProps {

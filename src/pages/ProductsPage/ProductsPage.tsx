@@ -22,7 +22,7 @@ const ProductsPage: React.FC = () => {
     getProducts();
   }, [dispatch]);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 
@@ -31,7 +31,7 @@ const ProductsPage: React.FC = () => {
     setPage(1); // Reset to first page on search
   };
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = products.filter((product: { title: string; }) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
