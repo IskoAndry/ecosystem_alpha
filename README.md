@@ -35,7 +35,7 @@
 
 
 ====================== Описание Структуры
-<!-- стек: TypeScript, React, Redux, Vite.  
+стек: TypeScript, React, Redux, Vite.  
 для получения списка продуктов Fake Store API ([https://fakestoreapi.com/](https://fakestoreapi.com/)) 
 Для UI компонентов используем Material-UI, СSS и 
 для управления формами — Formik с валидацией через Yup -->
@@ -80,4 +80,4 @@
         
 3. .gitignore: Файл для игнорирования файлов в Git.
 4. package.json: Файл конфигурации npm.
-5. README.md: Инструкции и описание проекта -->
+5. README.md: Инструкции и описание проекта
