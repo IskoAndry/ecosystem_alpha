@@ -1,50 +1,83 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Создать SPA со списком карточек, на каждой из которых выводится картинка и любая информация на ваш вкус, которая пришла с эндпоинта или созданная пользователем. 
 
-Currently, two official plugins are available:
+Дизайн не важен, главное, чтобы было просто и аккуратно. По стэку ориентируемся на список ниже. Остальные решения на вас. 
+Стэк: Typescript \ React \ Redux 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Для задачи можно выбрать любое публичное api, например, отсюда https://github.com/public-apis/public-apis 
+Все полученные и созданные данные хранить во внутреннем store
 
-## Expanding the ESLint configuration
+Можно использовать ui библиотеки, библиотеки для работы с формой. 
+Будет оцениваться подход к заданию, качество и структура кода.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Задача 1. Вывести список продуктов
+На странице /products 
+вывести весь список продуктов на карточке должна быть иконка лайка. При нажатии на которую, ставится или убирается like. Иконка должна подкрашиваться, когда проставлен like. 
+на карточке должна быть иконка удаления. При нажатии на которую, карточка удаляется.
+добавить фильтр для просмотра всех карточек и карточек, добавленных в избранное
+контент карточки(текст) должен быть урезан, чтобы у карточек была одинаковая высота
+при клике на любом месте карточки (кроме иконки лайка и кнопки удаления) мы должно попадать на отдельную страницу карточки.
+Задача 2. Страница продукта
+На странице /products/:id 
+вывести более подробную информацию о продукте. 
+сделать кнопку для перехода на основную страницу
+Задача 3. Создание продукта
+На отдельной странице /create- product реализовать создание продукта
+создать форму с полями. Поля обязательные и с минимальной валидацией.
+при отправке формы, сохранить данные в общий store.
+Задача 4.
+Реализовать пагинацию списка
+Реализовать возможность редактирования карточки продукта
+Реализовать дополнительную фильтрацию
+Реализовать поиск (без кнопки отправки)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+====================== Описание Структуры
+<!-- стек: TypeScript, React, Redux, Vite.  
+для получения списка продуктов Fake Store API ([https://fakestoreapi.com/](https://fakestoreapi.com/)) 
+Для UI компонентов используем Material-UI, СSS и 
+для управления формами — Formik с валидацией через Yup -->
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+<!-- 
+1. public
+   `index.html`: Основной HTML-файл приложения.
+   `assets/images`: Директория для хранения изображений.
+        
+2. src
+  components: Содержит все компоненты React.
+          + `ProductCard`: Компонент карточки продукта.
+          + `ProductList`: Компонент списка продуктов.
+          + `ProductDetails`: Компонент детальной информации о продукте.
+          + `CreateProduct`: Компонент формы создания продукта.
+          + `Pagination`: Компонент пагинации.
+          + `Filter`: Компонент фильтрации.
+          + `SearchBar`: Компонент поиска.
+                
+  store: Содержит всю логику Redux.
+          + `reducers`: Содержит редьюсеры для хранилища.
+                        - `productReducer.ts`: Редьюсер для управления состоянием продуктов.
+                        - `index.ts`: Комбинирует все редьюсеры.
+                        
+          + `actions`: Содержит экшены для хранилища.
+                        - `productActions.ts`: Экшены для управления продуктами.
+                        - `index.ts`: Экспортирует все экшены.
+                        
+          + `store.ts`: Инициализирует Redux store.
+                
+  services: Содержит сервисы для взаимодействия с API.
+          + `api.ts`: Сервис для запросов к публичному API.
+                
+  pages: Содержит страницы приложения.
+          + `ProductsPage`: Страница со списком продуктов.
+          + `ProductPage`: Страница с детальной информацией о продукте.
+          + `CreateProductPage`: Страница для создания продукта.
+                
+   `App.tsx`: Основной компонент приложения.
+   `index.tsx`: Точка входа в приложение.
+  `types.ts`: Общие типы данных для проекта.
+        
+3. .gitignore: Файл для игнорирования файлов в Git.
+4. package.json: Файл конфигурации npm.
+5. README.md: Инструкции и описание проекта -->
